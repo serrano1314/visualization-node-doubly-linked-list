@@ -174,6 +174,33 @@ void display(void){
         printf("\n");
     }
 }
+void delete(int loc){
+    struct node *temp;
+    int i=1;
+    if(loc>length()){
+        printf("INVALID LOCATION\n");
+        getch();
+    }
+    else if(loc==1){
+        temp = root;
+        root=temp->rlink;
+        temp->rlink=NULL;
+        free(temp);
+    }
+    else{
+        struct node *p, *q;
+        p = root;
+        while(i<loc-1){
+            p=p->rlink;
+            i++;
+        }
+        q=p->rlink;
+        p->rlink=q->rlink;
+        q->rlink=NULL;
+        free(q);
+    }
+}
+
 int length(void){
     struct node *p;
     p = root;
